@@ -106,8 +106,8 @@ img {
 }
 
 .profile-wrap {
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   margin-bottom: 1rem;
   border-radius: 50%;
   overflow: hidden;
@@ -401,12 +401,28 @@ img {
   font-weight: 500;
 }
 
-.exp-at a {
-  color: var(--text-dim);
+.exp-site-link {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-left: 0.35rem;
+  vertical-align: -0.15em;
+  color: var(--success);
+  border-radius: 4px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
-.exp-at a:hover {
-  color: var(--accent);
+.exp-site-link:hover {
+  color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 12%, transparent);
+}
+
+.exp-site-icon {
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .exp-bullets {

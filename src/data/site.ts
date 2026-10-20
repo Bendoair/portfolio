@@ -33,7 +33,7 @@ export const site = {
   location: 'Budapest, Hungary',
   blurb: 'Building clean mobile and web products.',
   resumeUrl: '/resume.pdf',
-  profileImage: '/profile.jpg',
+  profileImage: '/profile.png',
   about: `I'm a full-stack and mobile developer based in Budapest. I care about clean code, solid architecture, and shipping features end to end - from Android and Flutter to modern web stacks. Currently finishing an MSc in software development at BME.`,
 }
 
@@ -54,7 +54,7 @@ export const work: ExperienceItem[] = [
     title: 'Software Developer',
     company: 'MI Software',
     period: 'Jun 2025 - Mar 2026',
-    url: 'https://www.misoftware.hu/home',
+    url: 'https://www.misoftware.hu',
     bullets: [
       'Software development internship focused on product quality.',
       'Accessibility and UI optimization.',
@@ -66,6 +66,7 @@ export const work: ExperienceItem[] = [
     title: 'Software Developer Intern',
     company: 'Morgan Stanley Hungary',
     period: 'Jun 2024 - Aug 2024',
+    url: 'https://www.morganstanley.com/',
     bullets: [
       'Summer internship cycle on an internal trader tool.',
       'End-to-end design, testing, and delivery of a new feature.',
@@ -79,6 +80,7 @@ export const volunteer: ExperienceItem[] = [
     title: 'Operative Director',
     company: '2. Sík Sándor Cserkészcsapat',
     period: 'Sep 2018 - Oct 2025',
+    url: 'https://siksandor.cserkesz.hu/',
     bullets: [
       'High-level management and team leadership in a volunteer scout organization.',
       'Completed an operative management training course.',
@@ -113,18 +115,21 @@ export const languages: { name: string; level: string }[] = [
 export const projects: ProjectItem[] = [
   {
     title: 'Myner',
-    description: 'Paid work - live mobile app (Android and iOS).',
+    description:
+      'Paid work on a live consumer mobile app for Android and iOS - end-to-end features in a startup product shipped to users.',
     liveUrl: 'https://mynerapp.com/',
   },
   {
-    title: 'Voting Systems / Választási rendszerek',
-    description: 'Infotainment site',
+    title: 'Voting Systems',
+    description:
+      'Infotainment site about how voting rules shape representation - guided tour, explainers, case study, games, and a live simulation.',
     liveUrl: 'https://voksrendszer.hu/',
     repoUrl: 'https://github.com/Bendoair/voting_systems',
   },
   {
     title: 'Flag Quiz',
-    description: 'Grid based flag guessing game. Servers currently offline.',
+    description:
+      'Grid-based flag guessing game with timed rounds. Backend and leaderboard servers are currently offline.',
     liveUrl: 'https://flag-quiz-olive.vercel.app/',
     repoUrl: 'https://github.com/Bendoair/flag-quiz',
   },

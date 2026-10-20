@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { education, languages, volunteer, work, type ExperienceItem } from '../data/site'
+import { GlobeIcon } from './SocialIcons'
 
 type Tab = 'work' | 'education'
 
@@ -11,13 +12,18 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
         <h3 className="exp-title">
           {item.title}{' '}
           <span className="exp-at">
-            @{' '}
-            {item.url ? (
-              <a href={item.url} target="_blank" rel="noreferrer">
-                {item.company}
+            @ {item.company}
+            {item.url && (
+              <a
+                className="exp-site-link"
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${item.company} website`}
+                title={`${item.company} website`}
+              >
+                <GlobeIcon className="exp-site-icon" />
               </a>
-            ) : (
-              item.company
             )}
           </span>
         </h3>
