@@ -1,6 +1,6 @@
 import { site, navItems } from '../data/site'
 import { socials } from '../data/socials'
-import { useState, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { GitHubIcon, LinkedInIcon, MailIcon } from './SocialIcons'
 
 type SidebarProps = {
@@ -13,26 +13,17 @@ const socialIcons: Record<string, ReactNode> = {
   Email: <MailIcon className="social-icon" />,
 }
 
-export function Sidebar({ activeId }: SidebarProps) {
-  const [imgOk, setImgOk] = useState(true)
+const SHOW_PROFILE = false
 
+export function Sidebar({ activeId }: SidebarProps) {
   return (
     <aside className="sidebar">
       <div className="sidebar-identity">
-        <div className="profile-wrap" aria-hidden={!imgOk}>
-          {imgOk ? (
-            <img
-              className="profile-img"
-              src={site.profileImage}
-              alt=""
-              onError={() => setImgOk(false)}
-            />
-          ) : (
-            <div className="profile-placeholder" aria-hidden="true">
-              BS
-            </div>
-          )}
-        </div>
+        {SHOW_PROFILE && (
+          <div className="profile-wrap">
+            <img className="profile-img" src={site.profileImage} alt="" />
+          </div>
+        )}
 
         <h1 className="sidebar-name">{site.name}</h1>
         <p className="sidebar-role">{site.role}</p>
