@@ -34,7 +34,7 @@ export const site = {
   blurb: 'Building clean mobile and web products.',
   resumeUrl: '/resume.pdf',
   profileImage: '/profile.png',
-  about: `I'm a full-stack and mobile developer based in Budapest. I care about clean code, solid architecture, and shipping features end to end - from Android and Flutter to modern web stacks. Currently finishing an MSc in software development at BME.`,
+  about: `I'm a full-stack and mobile developer based in Budapest. I care about clean code, solid architecture, and shipping features end to end - from Android and Flutter to modern web stacks. Finishing in 2027 January an MSc in Computer Science Engineering at Budapest University of Technology and Economics.`,
 }
 
 export const work: ExperienceItem[] = [
@@ -78,7 +78,7 @@ export const work: ExperienceItem[] = [
 export const volunteer: ExperienceItem[] = [
   {
     title: 'Operative Director',
-    company: '2. Sík Sándor Cserkészcsapat',
+    company: "2. Sík Sándor Scout's Team",
     period: 'Sep 2018 - Oct 2025',
     url: 'https://siksandor.cserkesz.hu/',
     bullets: [
