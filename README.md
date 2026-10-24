@@ -29,4 +29,6 @@ Copy `.env.example` to `.env` and fill in your values locally. On Vercel, set th
 
 ## Stack
 
-Vite, React 19, TypeScript, plain CSS.
+Vite, React 19, TypeScript, plain CSS, `@vercel/analytics`.
+
+On Vercel, enable **Web Analytics** in the project dashboard after deploy.
