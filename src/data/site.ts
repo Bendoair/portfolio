@@ -104,6 +104,13 @@ export const education: EducationItem[] = [
   },
 ]
 
+export const honorsProgram = {
+  title: 'iMSc Honors Programme',
+  school: 'Budapest University of Technology and Economics',
+  description:
+    'I earned my place year after year in the university’s honors programme, iMSc, which selects students based on knowledge and skills that go well beyond the standard curriculum. As part of this program, I also taught several university courses in computer programming.',
+}
+
 export const languages: { name: string; level: string }[] = [
   { name: 'Hungarian', level: 'Mother tongue' },
   { name: 'English', level: 'C1' },

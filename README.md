@@ -14,13 +14,31 @@ npm run preview
 
 ## Environment
 
-Social links are read at build time from Vite env vars (keys only in `.env.example`):
+Copy `.env.example` to `.env` and fill in values locally. On Vercel, set the same keys in **Project Settings → Environment Variables**, then redeploy.
+
+Social links (build-time Vite):
 
 - `VITE_LINKEDIN_URL`
 - `VITE_GITHUB_URL`
 - `VITE_EMAIL`
+- `VITE_SPOTIFY_EMBED_URL` (Starmap Spotify iframe `src`)
 
-Copy `.env.example` to `.env` and fill in your values locally. On Vercel, set the same three variables in **Project Settings → Environment Variables**, then redeploy.
+Starmap (server-only, for `/api/starmap*`):
+
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
+## Starmap
+
+Interactive sky at `/starmap`. API routes need Upstash Redis.
+
+For local API + frontend together:
+
+```bash
+npx vercel dev
+```
+
+Plain `npm run dev` serves the UI only; `/api/*` calls will fail without `vercel dev` (or a deployed backend).
 
 ## Assets
 

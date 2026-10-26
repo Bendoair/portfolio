@@ -1,6 +1,8 @@
+import { type ReactNode } from 'react'
+import { TbNorthStar } from 'react-icons/tb'
+import { Link } from 'react-router-dom'
 import { site, navItems } from '../data/site'
 import { socials } from '../data/socials'
-import { type ReactNode } from 'react'
 import { GitHubIcon, LinkedInIcon, MailIcon } from './SocialIcons'
 
 type SidebarProps = {
@@ -51,6 +53,17 @@ export function Sidebar({ activeId }: SidebarProps) {
         <a className="resume-link" href={site.resumeUrl} target="_blank" rel="noreferrer">
           View Resume
         </a>
+        <div className="starmap-teaser">
+          <p className="starmap-teaser-text">“Sometimes, the stars gaze back.”</p>
+          <Link
+            className="starmap-teaser-btn"
+            to="/starmap"
+            aria-label="Open starmap"
+            title="Starmap"
+          >
+            <TbNorthStar aria-hidden size={20} />
+          </Link>
+        </div>
         <ul className="social-list">
           {socials.map((s) => (
             <li key={s.label}>

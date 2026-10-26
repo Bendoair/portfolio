@@ -1,0 +1,504 @@
+.starmap-page::-webkit-scrollbar {
+  display: none;
+}
+
+.starmap-page {
+  --sky-deep: #0a0e18;
+  --sky-mid: #12182a;
+  --sky-edge: #1a2238;
+  --frame: rgba(180, 190, 210, 0.28);
+  --frame-glow: rgba(200, 210, 230, 0.08);
+  --star: #e8eef8;
+  --formation: rgba(200, 210, 230, 0.35);
+  --formation-lit: rgba(232, 238, 248, 0.95);
+  --mountain-far: #141b2c;
+  --mountain-mid: #0f1522;
+  --mountain-near: #0a0e18;
+  --ui: #c5cddc;
+  --ui-dim: #7a8499;
+
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  background: var(--bg);
+  color: var(--ui);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.5rem 1.25rem 2.5rem;
+}
+
+.starmap-topbar {
+  width: min(920px, 100%);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
+  margin-bottom: 1.25rem;
+}
+
+.starmap-back {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.starmap-back:hover {
+  color: var(--accent);
+}
+
+.starmap-intro {
+  width: min(720px, 100%);
+  margin: 0 0 3rem;
+  text-align: center;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  line-height: 1.7;
+  color: var(--text-dim);
+  z-index: 2;
+}
+
+.starmap-panel {
+  width: min(920px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 1.25rem 2rem;
+  align-items: center;
+  margin-bottom: 3.25rem;
+  z-index: 2;
+}
+
+@property --starmap-spotify-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.starmap-spotify {
+  position: relative;
+  min-width: 0;
+  height: 80px;
+  border-radius: 12px;
+  background: rgba(8, 10, 18, 0.55);
+}
+
+.starmap-spotify.is-fallback {
+  height: auto;
+  background: transparent;
+}
+
+.starmap-spotify-loader {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.starmap-spotify-loader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--starmap-spotify-angle),
+    transparent 0%,
+    transparent 62%,
+    rgba(232, 238, 248, 0.15) 72%,
+    var(--star) 86%,
+    rgba(232, 238, 248, 0.35) 92%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: starmap-spotify-orbit 1.6s linear infinite;
+}
+
+.starmap-spotify.is-ready .starmap-spotify-loader {
+  opacity: 0;
+}
+
+.starmap-spotify-frame {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 80px;
+  border: 0;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.starmap-spotify.is-ready .starmap-spotify-frame {
+  opacity: 1;
+}
+
+@keyframes starmap-spotify-orbit {
+  to {
+    --starmap-spotify-angle: 360deg;
+  }
+}
+
+.starmap-spotify-fallback {
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.75rem;
+  color: var(--ui-dim);
+}
+
+.starmap-spotify-fallback code {
+  font-size: 0.7rem;
+  color: var(--ui);
+}
+
+.starmap-blurb {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.starmap-stage {
+  position: relative;
+  width: min(920px, 100%);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  min-height: min(52vh, 480px);
+}
+
+.starmap-frame {
+  position: relative;
+  flex: 1;
+  min-height: min(52vh, 480px);
+  /* Keep overflow visible so mode switch / status can sit on the border */
+  overflow: visible;
+}
+
+.starmap-frame-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid var(--frame);
+  border-radius: 28px;
+  box-shadow:
+    inset 0 0 40px var(--frame-glow),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
+  /* Bright only in the bottom ~33%; top stays deep */
+  background: linear-gradient(
+    to top,
+    rgba(42, 53, 80, 0.55) 0%,
+    rgba(26, 34, 56, 0.35) 22%,
+    rgba(12, 16, 28, 0.15) 33%,
+    #0a0e18 55%,
+    #080b14 100%
+  );
+}
+
+.starmap-modes {
+  position: absolute;
+  top: 0;
+  left: 1.25rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--frame);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #0c101c;
+  z-index: 4;
+}
+
+.starmap-mode-seg {
+  display: flex;
+  min-width: 8.25rem;
+}
+
+.starmap-mode-seg + .starmap-mode-seg {
+  border-left: 1px solid var(--frame);
+}
+
+.starmap-mode-btn {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.10rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--ui-dim);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.25rem 0.55rem;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.starmap-mode-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  line-height: 1;
+}
+
+.starmap-mode-btn[aria-pressed='true'] {
+  color: var(--ui);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.starmap-mode-btn:hover {
+  color: var(--ui);
+}
+
+.starmap-mode-btn .is-cooled {
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+.starmap-mode-cooldown {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 0.85rem;
+  color: var(--ui-dim);
+  font-size: 0.58rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  opacity: 0.85;
+}
+
+.starmap-mode-constellation {
+  display: block;
+  opacity: 0.7;
+}
+
+.starmap-sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: none;
+  z-index: 2;
+}
+
+.starmap-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.starmap-line {
+  stroke: var(--formation);
+  stroke-width: 0.002;
+  /* slow out */
+  transition:
+    stroke 0.45s ease-out,
+    stroke-width 0.45s ease-out,
+    opacity 0.45s ease-out;
+  opacity: 0.85;
+}
+
+.starmap-line.is-lit {
+  stroke: var(--formation-lit);
+  stroke-width: 0.0045;
+  opacity: 1;
+  /* quick in */
+  transition:
+    stroke 0.12s ease-out,
+    stroke-width 0.12s ease-out,
+    opacity 0.12s ease-out;
+}
+
+.starmap-star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--star);
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+  /* slow out / settle after appear */
+  transition:
+    transform 0.45s ease-out,
+    opacity 0.55s ease-out,
+    box-shadow 0.55s ease-out,
+    background-color 0.45s ease-out;
+}
+
+.starmap-star.is-appearing {
+  animation: starmap-star-appear 0.55s ease-out;
+  opacity: 1 !important;
+  background: #fff;
+  box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.95) !important;
+}
+
+@keyframes starmap-star-appear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.starmap-star.is-lit {
+  transform: translate(-50%, -50%) scale(1.55);
+  opacity: 1 !important;
+  background: #fff;
+  box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.95) !important;
+  /* quick in */
+  transition:
+    transform 0.12s ease-out,
+    opacity 0.12s ease-out,
+    box-shadow 0.12s ease-out,
+    background-color 0.12s ease-out;
+}
+
+.starmap-orbit-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--star);
+  box-shadow: 0 0 6px 1px rgba(232, 238, 248, 0.85);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.starmap-formation-label {
+  position: absolute;
+  /* Anchored at lowest star; sit just below it */
+  transform: translate(-50%, 0.55rem);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ui);
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  /* slow out */
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.45s ease-out;
+  z-index: 3;
+}
+
+.starmap-formation-label.is-lit {
+  opacity: 1;
+  transform: translate(-50%, 0.7rem) scale(1.05);
+  /* quick in */
+  transition:
+    opacity 0.12s ease-out,
+    transform 0.12s ease-out;
+}
+
+.starmap-cursor {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  color: var(--star);
+  filter: drop-shadow(0 0 4px rgba(232, 238, 248, 0.55));
+  transform: translate(-50%, -50%);
+}
+
+.starmap-mode-icon {
+  display: inline-flex;
+  vertical-align: -0.15em;
+  margin-right: 0.35em;
+}
+
+.starmap-brightness-pill {
+  position: absolute;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui);
+  background: #0c101c;
+  border: 1px solid var(--frame);
+  border-radius: 999px;
+  transform: translate(-50%, -140%);
+  z-index: 4;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.starmap-mountains {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28%;
+  min-height: 72px;
+  max-height: 140px;
+  z-index: 1;
+}
+
+.starmap-mountains svg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 720px) {
+  .starmap-panel {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .starmap-page {
+    padding: 2.25rem 0.75rem 2rem;
+  }
+
+  .starmap-mode-btn {
+    padding: 0.35rem 0.85rem 0.45rem;
+    font-size: 0.7rem;
+  }
+
+  .starmap-mode-seg {
+    min-width: 6.25rem;
+  }
+
+  .starmap-modes {
+    left: 0.65rem;
+  }
+}

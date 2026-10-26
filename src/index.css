@@ -23,6 +23,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -33,6 +39,80 @@ body {
   color: var(--text);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.route-transition {
+  position: relative;
+  min-height: 100vh;
+}
+
+.route-layer {
+  min-height: 100vh;
+}
+
+.route-enter {
+  animation: route-enter 0.72s cubic-bezier(0.33, 0.9, 0.28, 1);
+}
+
+.route-enter--from-right {
+  --route-enter-x: 18%;
+}
+
+.route-enter--from-left {
+  --route-enter-x: -18%;
+}
+
+.route-exit {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg);
+  animation: route-exit 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.route-exit--from-right {
+  --route-exit-x: -8%;
+}
+
+.route-exit--from-left {
+  --route-exit-x: 8%;
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0.55;
+    transform: translateX(var(--route-enter-x));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes route-exit {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(var(--route-exit-x));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-enter,
+  .route-exit {
+    animation: none;
+  }
 }
 
 a {
@@ -227,6 +307,40 @@ img {
 
 .resume-link:hover {
   border-bottom-color: var(--accent);
+}
+
+.starmap-teaser {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.starmap-teaser-text {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.starmap-teaser-btn {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--muted);
+  border-radius: 6px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.starmap-teaser-btn:hover {
+  color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 12%, transparent);
 }
 
 .social-list {
@@ -455,6 +569,26 @@ img {
   margin: 0;
   color: var(--text-dim);
   font-size: 0.92rem;
+}
+
+.edu-honors {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  border-radius: 6px;
+}
+
+.edu-honors:hover {
+  background: var(--surface);
+}
+
+.edu-description {
+  margin: 0.55rem 0 0;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  max-width: 42rem;
 }
 
 .tag-list {

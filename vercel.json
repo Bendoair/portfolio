@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/starmap", "destination": "/index.html" },
+    { "source": "/starmap/(.*)", "destination": "/index.html" }
+  ]
+}

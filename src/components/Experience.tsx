@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { education, languages, volunteer, work, type ExperienceItem } from '../data/site'
+import {
+  education,
+  honorsProgram,
+  languages,
+  volunteer,
+  work,
+  type ExperienceItem,
+} from '../data/site'
 import { GlobeIcon } from './SocialIcons'
 
 type Tab = 'work' | 'education'
@@ -109,6 +116,14 @@ export function Experience() {
               </article>
             ))}
           </div>
+
+          <article className="edu-honors">
+            <h3 className="exp-title">
+              {honorsProgram.title}{' '}
+              <span className="exp-at">- {honorsProgram.school}</span>
+            </h3>
+            <p className="edu-description">{honorsProgram.description}</p>
+          </article>
 
           <div className="languages-block">
             <h3 className="subgroup-heading">Languages</h3>
