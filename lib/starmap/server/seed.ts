@@ -1,4 +1,4 @@
-import type { Star } from '../shared/types'
+import type { Star } from '../shared/types.js'
 
 /** Fixed test stars so formations / UI can be tried immediately. */
 export const SEED_STARS: Star[] = [

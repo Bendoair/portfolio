@@ -2,15 +2,15 @@ import {
   MAX_BRIGHTNESS,
   MIN_BRIGHTNESS,
   randomBrightenStep,
-} from '../shared/brightness'
+} from '../shared/brightness.js'
 import {
   BRIGHTEN_COOLDOWN_MS,
   PLACE_COOLDOWN_MS,
   cooldownRemainingMs,
-} from '../shared/cooldowns'
-import type { Star, StarmapMeta, StarmapSnapshot } from '../shared/types'
-import { META_KEY, STARS_KEY, getRedis } from './redis'
-import { SEED_STARS } from './seed'
+} from '../shared/cooldowns.js'
+import type { Star, StarmapMeta, StarmapSnapshot } from '../shared/types.js'
+import { META_KEY, STARS_KEY, getRedis } from './redis.js'
+import { SEED_STARS } from './seed.js'
 
 const EMPTY_META: StarmapMeta = {
   lastPlacedAt: null,
